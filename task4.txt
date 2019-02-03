@@ -1,0 +1,5 @@
+SELECT o.id, o.created, SUM(og.quantity) count_product,  ROUND(SUM(og.sum_price) / SUM(og.quantity),2) avg_product_price FROM orders o 
+JOIN (SELECT order_id, price*quantity sum_price, quantity FROM order_goods) og ON og.order_id = o.id
+GROUP BY o.id
+ORDER BY o.created
+LIMIT 0,10;
